@@ -1,10 +1,8 @@
-import * as React from "react";
-import {
-  View, Text, Image
-} from 'react-native';
+import * as React from 'react';
+import {View, Text, Image} from 'react-native';
 
 // constants
-import { IN_PROGRESS, FAILED, SUCCESS } from "../../constants/uiStates";
+import {IN_PROGRESS, FAILED, SUCCESS} from '../../constants/uiStates';
 
 type AsyncComponentType = {
   uiState: any;
@@ -32,17 +30,13 @@ const Async = ({
 
 Async.defaultProps = {
   onProgress: () => (
-    <View style={{ flex: 1, 
-      alignItems: 'center', 
-      justifyContent: 'center'}}>
-       <Image
-          source={require('../../images/loading.gif')}
-        /> 
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <Image source={require('../../images/loading.gif')} />
     </View>
   ),
   onFailure: (error: any) => (
     <View>
-      <Text>{(error && error.message) || "Something went wrong"}</Text>
+      <Text>{(error && error.message) || 'Something went wrong'}</Text>
     </View>
   ),
 };

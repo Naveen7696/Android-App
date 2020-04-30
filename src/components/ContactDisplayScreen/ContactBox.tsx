@@ -1,10 +1,10 @@
 import React from 'react';
-import ContactStyles from "./ContactStyles";
-import { View, Text, Image } from 'react-native';
-import { ContactProps } from "../../types/index";
+import ContactStyles from './ContactStyles';
+import {View, Text, Image} from 'react-native';
+import {ContactProps} from '../../types/index';
 
 const ContactBox = ({contact}: ContactProps) => {
-  return(
+  return (
     <View style={ContactStyles.contact}>
       <View style={ContactStyles.contactLeft}>
         <Image
@@ -13,18 +13,12 @@ const ContactBox = ({contact}: ContactProps) => {
         />
       </View>
       <View style={ContactStyles.contactRight}>
-        <Text style={ContactStyles.name}>
-          {contact.name}
-        </Text>
-        <Text>
-          {contact.email}
-        </Text>
-        <Text>
-          {contact.mobileNumber}
-        </Text>
+        <Text style={ContactStyles.name}>{contact.name}</Text>
+        <Text>{contact.email}</Text>
+        <Text>{contact.mobileNumber}</Text>
       </View>
-    </View>  
-  )
-}
+    </View>
+  );
+};
 
 export default ContactBox;

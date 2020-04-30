@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 
 const ContactStyles = StyleSheet.create({
   container: {
@@ -6,7 +6,7 @@ const ContactStyles = StyleSheet.create({
   },
   contact: {
     flex: 1,
-    flexDirection: "row",
+    flexDirection: 'row',
     marginLeft: 20,
     marginRight: 20,
     padding: 20,
@@ -15,7 +15,7 @@ const ContactStyles = StyleSheet.create({
     marginBottom: 30,
   },
   contactLeft: {
-    flex: .3,
+    flex: 0.3,
     paddingLeft: 10,
     paddingTop: 10,
   },
@@ -24,10 +24,10 @@ const ContactStyles = StyleSheet.create({
     height: 60,
   },
   contactRight: {
-    flex: .7,
+    flex: 0.7,
   },
   name: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 22,
   },
 });

@@ -1,6 +1,6 @@
-import { put, takeLatest, all } from 'redux-saga/effects';
-import * as constants from "../constants/contacts";
-import { getContacts } from "../apis/contacts";
+import {put, takeLatest, all} from 'redux-saga/effects';
+import * as constants from '../constants/contacts';
+import {getContacts} from '../apis/contacts';
 
 function* fetchContacts() {
   try {
@@ -10,16 +10,14 @@ function* fetchContacts() {
       contacts: contacts,
     });
   } catch (err) {
-    yield put({ type: constants.FETCH_CONTACTS_FAILED, error: err });
+    yield put({type: constants.FETCH_CONTACTS_FAILED, error: err});
   }
 }
 
 function* actionWatcher() {
-  yield takeLatest(constants.FETCH_CONTACTS , fetchContacts)
+  yield takeLatest(constants.FETCH_CONTACTS, fetchContacts);
 }
 
 export default function* rootSaga() {
-   yield all([
-    actionWatcher(),
-   ]);
+  yield all([actionWatcher()]);
 }

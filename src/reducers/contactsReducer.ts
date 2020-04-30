@@ -1,6 +1,6 @@
-import * as constants from "../constants/contacts";
-import * as uiState from "../constants/uiStates";
-import {ContactsStateTypes, ActionTypes } from "../types/index";
+import * as constants from '../constants/contacts';
+import * as uiState from '../constants/uiStates';
+import {ContactsStateTypes, ActionTypes} from '../types/index';
 
 const initialState: ContactsStateTypes = {
   contacts: [],
@@ -17,13 +17,12 @@ const contactsReducer = (state = initialState, action: ActionTypes) => {
         asyncState: uiState.SUCCESS,
       };
     case constants.FETCH_CONTACTS:
-      return { ...state, asyncState: uiState.IN_PROGRESS };
+      return {...state, asyncState: uiState.IN_PROGRESS};
     case constants.FETCH_CONTACTS_FAILED:
-      return { ...state, error: action.error, asyncState: uiState.FAILED };
+      return {...state, error: action.error, asyncState: uiState.FAILED};
     default:
       return state;
   }
 };
 
 export default contactsReducer;
-

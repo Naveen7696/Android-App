@@ -1,4 +1,4 @@
-import { ErrorType, UiStateType } from "./index";
+import {ErrorType, UiStateType} from './index';
 
 export interface ContactsStateTypes {
   contacts: Array<Contact>;
@@ -20,4 +20,4 @@ export interface Contact {
 
 export type ContactProps = {
   contact: Contact;
-}
+};
