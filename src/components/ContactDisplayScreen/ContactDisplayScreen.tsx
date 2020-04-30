@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
 import {View, ScrollView} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {getContacts} from '../../actions/index';
+import {getContacts} from '../../actions';
 import Async from '../Async/Async';
 import ContactStyles from './ContactStyles';
 import ContactBox from './ContactBox';
-import {AppStore} from '../../types/index';
+import {AppStore, ContactTypes} from '../../types';
 
 const ContactDisplayScreen = () => {
   const contacts = useSelector(
@@ -20,7 +20,7 @@ const ContactDisplayScreen = () => {
 
   useEffect(() => {
     dispatch(getContacts());
-  }, [dispatch]);
+  },[]);
 
   return (
     <Async
@@ -29,7 +29,7 @@ const ContactDisplayScreen = () => {
         return (
           <ScrollView>
             <View style={ContactStyles.container}>
-              {contacts.map((contact: any) => (
+              {contacts.map((contact: ContactTypes) => (
                 <ContactBox key={contact.email} contact={contact} />
               ))}
             </View>

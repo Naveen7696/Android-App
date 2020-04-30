@@ -1,6 +1,6 @@
 import * as constants from '../constants/contacts';
 import * as uiState from '../constants/uiStates';
-import {ContactsStateTypes, ActionTypes} from '../types/index';
+import {ContactsStateTypes, ActionTypes} from '../types';
 
 const initialState: ContactsStateTypes = {
   contacts: [],

@@ -1,7 +1,7 @@
 import React from 'react';
 import ContactStyles from './ContactStyles';
 import {View, Text, Image} from 'react-native';
-import {ContactProps} from '../../types/index';
+import {ContactProps} from '../../types';
 
 const ContactBox = ({contact}: ContactProps) => {
   return (

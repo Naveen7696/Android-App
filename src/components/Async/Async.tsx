@@ -3,14 +3,8 @@ import {View, Text, Image} from 'react-native';
 
 // constants
 import {IN_PROGRESS, FAILED, SUCCESS} from '../../constants/uiStates';
-
-type AsyncComponentType = {
-  uiState: any;
-  onSuccess: Function;
-  onFailure: Function;
-  onProgress: Function;
-  error: any;
-};
+import {AsyncComponentType, ErrorType} from '../../types';
+import AsyncStyles from './AsyncStyles';
 
 const Async = ({
   uiState,
@@ -30,11 +24,11 @@ const Async = ({
 
 Async.defaultProps = {
   onProgress: () => (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+    <View style={AsyncStyles.onProgress}>
       <Image source={require('../../images/loading.gif')} />
     </View>
   ),
-  onFailure: (error: any) => (
+  onFailure: (error: ErrorType) => (
     <View>
       <Text>{(error && error.message) || 'Something went wrong'}</Text>
     </View>
