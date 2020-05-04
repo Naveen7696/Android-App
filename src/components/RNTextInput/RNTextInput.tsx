@@ -3,15 +3,17 @@ import React from 'react';
 import { TextInput } from 'react-native';
 import TextInputStyles from './TextInputStyles';
 
-const RFTextInput = ({ placeholder, onChangeText }: any) => ( 
+const RNTextInput = ({ placeholder, onChangeText }: any) => ( 
   <TextInput
     placeholder={placeholder}
     style={TextInputStyles.inputStyle}
+    onChangeText={onChangeText}
   />
 );
 
-RFTextInput.propTypes = {
+RNTextInput.propTypes = {
   placeholder: PropTypes.string.isRequired,
+  onChangeText: PropTypes.func.isRequired,
 }
 
-export default RFTextInput;
+export default RNTextInput;
