@@ -1,10 +1,12 @@
+import * as uiState from '../constants/uiStates';
+
 export * from './contacts.types';
 export * from './store.types';
 
 export type ErrorType = {message?: React.ReactNode};
 export type ChildrenType = {children?: React.ReactNode};
 
-export type UiStateType = 'INIT' | 'IN_PROGRESS' | 'FAILED' | 'SUCCESS';
+export type UiStateType = typeof uiState[keyof typeof uiState]; 
 
 export type AsyncComponentType = {
   uiState: UiStateType;
