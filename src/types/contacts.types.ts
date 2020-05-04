@@ -15,7 +15,7 @@ export type ActionTypes = {
 export interface ContactTypes {
   name: string;
   email: string;
-  mobileNumber: Number;
+  mobileNumber: number;
 }
 
 export type ContactProps = {
