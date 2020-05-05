@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, Alert, ActivityIndicator} from 'react-native';
+import {View, Text, TouchableOpacity, Alert, ActivityIndicator, Button} from 'react-native';
 import NewContactStyles from './NewContactStyles';
 import RNTextInput from '../RNTextInput/RNTextInput';
 import {useDispatch, useSelector} from 'react-redux';
 import { storeContact } from '../../actions';
 import * as uiStates from '../../constants/uiStates';
+import {useNavigation} from '@react-navigation/native';
+import PopUpMessage from '../PopUpMessage/PopUpMessage';
 
 const NewContactScreen = () => {
+  const navigation = useNavigation();
   const disptach = useDispatch();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -86,9 +89,11 @@ const NewContactScreen = () => {
         </View>
       }
       { asyncState === uiStates.SUCCESS && 
-        <View >
-          <Text>Alert.alert("Successfully Submitted")</Text> 
-        </View>
+        <PopUpMessage 
+          message= "Successfully Submitted"
+          buttonTitle= "ok"
+          redirectName = "Home"
+        />
       }
     </View>
 
