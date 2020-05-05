@@ -20,6 +20,12 @@ const contactsReducer = (state = initialState, action: ActionTypes) => {
       return {...state, asyncState: uiState.IN_PROGRESS};
     case constants.FETCH_CONTACTS_FAILED:
       return {...state, error: action.error, asyncState: uiState.FAILED};
+    case constants.STORE_CONTACT:
+      return { ...state, asyncState: uiState.IN_PROGRESS}
+    case constants.STORE_CONTACT_SUCCESS:
+      return { ...state, asyncState: uiState.SUCCESS}
+    case constants.STORE_CONTACT_FAILED:
+      return { ...state, error: action.error, asyncState: uiState.FAILED}
     default:
       return state;
   }

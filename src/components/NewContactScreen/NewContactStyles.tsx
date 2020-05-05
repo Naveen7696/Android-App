@@ -17,6 +17,15 @@ const NewContactStyles = StyleSheet.create({
     borderRadius: 50,
     backgroundColor: '#DCDCDC',
   },
+  submitButton: {
+    marginTop: 30,
+    padding: 10,
+    backgroundColor: 'green',
+    color: 'white',
+  },
+  submitButtonText: {
+    color: 'white',
+  }
 });
 
 export default NewContactStyles;
