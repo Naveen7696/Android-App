@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import Modal from 'react-native-modal';
 import {PopUpTypes} from '../../types';
 
-const PopUpMessage = ({message, redirectName, buttonTitle}: PopUpTypes) => {
+const PopUpMessage = ({message, redirectComponent, buttonTitle}: PopUpTypes) => {
   const navigation = useNavigation();
   return (
     <Modal isVisible={true} style={PopUpStyles.container}>
@@ -13,7 +13,7 @@ const PopUpMessage = ({message, redirectName, buttonTitle}: PopUpTypes) => {
         <Text style={PopUpStyles.box}>{message}</Text>
         <Button
           title={buttonTitle}
-          onPress={() => navigation.navigate(redirectName)}
+          onPress={() => navigation.navigate(redirectComponent)}
         />
       </View>
     </Modal>

@@ -1,5 +1,5 @@
 export type PopUpTypes = {
   message: string;
-  redirectName: string;
+  redirectComponent: string;
   buttonTitle: string;
 };

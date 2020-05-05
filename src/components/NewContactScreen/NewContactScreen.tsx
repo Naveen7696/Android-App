@@ -95,7 +95,7 @@ const NewContactScreen = () => {
         <PopUpMessage
           message="Successfully Submitted"
           buttonTitle="ok"
-          redirectName="Home"
+          redirectComponent="Home"
         />
       )}
     </View>
