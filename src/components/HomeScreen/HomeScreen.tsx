@@ -11,10 +11,18 @@ const HomeScreen = () => {
         style={HomeStyles.logo}
         source={require('../../images/contact-logo.svg')}
       />
-      <Button
-        title="Contacts"
-        onPress={() => navigation.navigate('Contacts')}
-      />
+      <View style={HomeStyles.button}>
+        <Button
+          title="New Contact"
+          onPress={() => navigation.navigate('New')}
+        />
+      </View>
+      <View style={HomeStyles.button}>
+        <Button
+          title="Display"
+          onPress={() => navigation.navigate('Contacts')}
+        />
+      </View>
     </View>
   );
 };
