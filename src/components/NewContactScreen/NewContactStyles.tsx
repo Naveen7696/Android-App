@@ -25,7 +25,7 @@ const NewContactStyles = StyleSheet.create({
   },
   submitButtonText: {
     color: 'white',
-  }
+  },
 });
 
 export default NewContactStyles;

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, ScrollView} from 'react-native';
+import {View, ScrollView, Text} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {getContacts} from '../../actions';
 import Async from '../Async/Async';
@@ -20,13 +20,13 @@ const ContactDisplayScreen = () => {
 
   useEffect(() => {
     dispatch(getContacts());
-  },[]);
+  }, []);
 
   return (
     <Async
       uiState={asyncState}
       onSuccess={() => {
-        return (
+        return contacts.length > 0 ? (
           <ScrollView>
             <View style={ContactStyles.container}>
               {contacts.map((contact: ContactTypes) => (
@@ -34,6 +34,10 @@ const ContactDisplayScreen = () => {
               ))}
             </View>
           </ScrollView>
+        ) : (
+          <View>
+            <Text>No Contacts</Text>
+          </View>
         );
       }}
       error={error}

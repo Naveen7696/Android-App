@@ -15,16 +15,16 @@ function* storeContact(action) {
         contacts: [...parsedContacts.contacts, action.contact],
       });
 
-      yield call(addContacts, contactsString)
+      yield call(addContacts, contactsString);
     } else {
       const contactsString = JSON.stringify({
         contacts: [action.contact],
       });
-      yield call(addContacts, contactsString)
+      yield call(addContacts, contactsString);
     }
     yield put({type: constants.STORE_CONTACT_SUCCESS});
   } catch (err) {
-    console.log(err)
+    console.log(err);
     yield put({type: constants.STORE_CONTACT_FAILED, error: err});
   }
 }
@@ -33,10 +33,10 @@ function* fetchContacts() {
   try {
     //const contacts = yield getContacts();
     const storedContacts = yield call(AsyncStorage.getItem, '@contacts');
-    const ParsedContacts = JSON.parse(storedContacts);
+    const contacts = storedContacts ? JSON.parse(storedContacts).contacts : [];
     yield put({
       type: constants.FETCH_CONTACTS_SUCCESS,
-      contacts: ParsedContacts.contacts,
+      contacts: contacts,
     });
   } catch (err) {
     yield put({type: constants.FETCH_CONTACTS_FAILED, error: err});

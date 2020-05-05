@@ -1,102 +1,104 @@
-import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, Alert, ActivityIndicator, Button} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Alert,
+  ActivityIndicator,
+} from 'react-native';
 import NewContactStyles from './NewContactStyles';
 import RNTextInput from '../RNTextInput/RNTextInput';
 import {useDispatch, useSelector} from 'react-redux';
-import { storeContact } from '../../actions';
+import {storeContact, resetState} from '../../actions';
 import * as uiStates from '../../constants/uiStates';
-import {useNavigation} from '@react-navigation/native';
 import PopUpMessage from '../PopUpMessage/PopUpMessage';
+import {AppStore} from '../../types';
 
 const NewContactScreen = () => {
-  const navigation = useNavigation();
-  const disptach = useDispatch();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [mobileNumber, setMobileNumber] = useState(0);
+  const dispatch = useDispatch();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [mobileNumber, setMobileNumber] = useState('');
 
   const asyncState = useSelector(
-    (state: any) => state.contactsReducer.asyncState,
+    (state: AppStore) => state.contactsReducer.asyncState,
   );
-  const error = useSelector(
-    (state: any) => state.contactsReducer.error,
-  );
+  const error = useSelector((state: AppStore) => state.contactsReducer.error);
 
-  const handleEmail = (email: string) => {
-    setEmail(email)
-  }
+  const handleEmail = (text: string) => {
+    setEmail(text);
+  };
 
-  const handleName = (name: string) => {
-    setName(name)
-  }
+  const handleName = (text: string) => {
+    setName(text);
+  };
 
-  const handleMobileNumber = (mobileNum: number) => {
-    setMobileNumber(mobileNum)
-  }
+  const handleMobileNumber = (text: string) => {
+    setMobileNumber(text);
+  };
 
   const validation = () => {
-    // Sample validation 
-    if(name === "" || email === "" || mobileNumber === 0) {
-      return false
+    // Sample validation
+    if (name === '' || email === '' || mobileNumber === '') {
+      return false;
     }
-    return true
-  }
+    return true;
+  };
 
   const createContact = () => {
-    if(validation()){
+    if (validation()) {
       const contact = {
         name: name,
         email: email,
-        mobileNumber: mobileNumber
-      }
-      disptach(storeContact(contact));
+        mobileNumber: mobileNumber,
+      };
+      dispatch(storeContact(contact));
+    } else {
+      Alert.alert('All fields required');
     }
-    else{
-      Alert.alert("All fields required")
-    }
-  }
+  };
+
+  useEffect(() => {
+    dispatch(resetState());
+  }, []);
 
   return (
     <View style={NewContactStyles.container}>
       <Text style={NewContactStyles.formLabel}> New Contact </Text>
-      <RNTextInput 
-        placeholder="Name"
-        onChangeText = {handleName}
-      />
-      <RNTextInput 
+      <RNTextInput placeholder="Name" onChangeText={handleName} />
+      <RNTextInput
         placeholder="Email"
-        onChangeText = {handleEmail}
+        onChangeText={handleEmail}
+        keyboardType="email-address"
       />
-      <RNTextInput 
+      <RNTextInput
         placeholder="Mobile Number"
-        onChangeText = {handleMobileNumber}
+        keyboardType="phone-pad"
+        onChangeText={handleMobileNumber}
       />
-      { asyncState === uiStates.FAILED && error && 
-        <View >
+      {asyncState === uiStates.FAILED && error && (
+        <View>
           <Text>error.message</Text>
         </View>
-      }
+      )}
       <TouchableOpacity
-          style = {NewContactStyles.submitButton}
-          onPress = {
-            () => createContact()
-          }>
-          <Text style = {NewContactStyles.submitButtonText}> Submit </Text>
+        style={NewContactStyles.submitButton}
+        onPress={() => createContact()}>
+        <Text style={NewContactStyles.submitButtonText}> Submit </Text>
       </TouchableOpacity>
-      { asyncState === uiStates.IN_PROGRESS && 
-        <View >
+      {asyncState === uiStates.IN_PROGRESS && (
+        <View>
           <ActivityIndicator size="large" color="#0000ff" />
         </View>
-      }
-      { asyncState === uiStates.SUCCESS && 
-        <PopUpMessage 
-          message= "Successfully Submitted"
-          buttonTitle= "ok"
-          redirectName = "Home"
+      )}
+      {asyncState === uiStates.SUCCESS && (
+        <PopUpMessage
+          message="Successfully Submitted"
+          buttonTitle="ok"
+          redirectName="Home"
         />
-      }
+      )}
     </View>
-
   );
 };
 
